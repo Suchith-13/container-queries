@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Layout with Container Queries</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      display: grid;
+      grid-template-areas:
+        "header header header"
+        "sidebar content right"
+        "footer footer footer";
+      grid-template-columns: 1fr 3fr 1fr;
+      grid-template-rows: auto 1fr auto;
+      gap: 10px;
+      height: 100vh;
+      padding: 10px;
+    }
+
+    header {
+      grid-area: header;
+      background-color: purple;
+      padding: 20px;
+      color: white;
+      text-align: center;
+    }
+
+    .sidebar {
+      grid-area: sidebar;
+      background-color: lightblue;
+      padding: 20px;
+    }
+
+    .content {
+      grid-area: content;
+      background-color: white;
+      padding: 20px;
+      border: 2px solid #ddd;
+    }
+
+    .right {
+      grid-area: right;
+      background-color: lightblue;
+      padding: 20px;
+    }
+
+    footer {
+      grid-area: footer;
+      background-color: lightblue;
+      padding: 20px;
+      text-align: center;
+    }
+
+    /* Media Query for Mobile View */
+    @media (max-width: 600px) {
+      .container {
+        grid-template-areas:
+          "header"
+          "sidebar"
+          "content"
+          "right"
+          "footer";
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+      }
+
+      header, footer {
+        text-align: left;
+      }
+    }
+
+    /* Example of Container Query */
+    @container (min-width: 500px) {
+      .content {
+        background-color: lightgreen;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>Header</header>
+    <div class="sidebar">Sidebar</div>
+    <div class="content">
+      Content Area (changes color when container is wide enough)
+    </div>
+    <div class="right">Right Section</div>
+    <footer>Footer</footer>
+  </div>
+
+</body>
+</html>
